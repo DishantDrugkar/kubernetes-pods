@@ -1,0 +1,37 @@
+creating a kind cluster
+
+step 1] In your local machine create a folder of name devops
+step 2] Inside devops folder create a config.yml file
+
+yml file should look like this :
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+ - role: control-plane
+   image: kindest/node:v1.31.2
+   extraPortMappings: 
+     - containerPort: 80
+       hostPort: 80
+       protocol: TCP
+     - containerPort: 443
+       hostPort: 443
+       protocol: TCP
+  - role: worker
+    image: kindest/node:v131.2
+  - role: worker
+    image: kindest/node:v131.2
+  - role: worker
+    image: kindest/node:v131.2
+
+
+after this run command : kind create cluster --name=dishant-cluster --config=config.yml
+
+  it will create your kind cluster
+
+command : kubectl get nodes
+it shows no. of nodes
+
+NOTE : whenever you shutdown your machine and want to connect with cluster, go to config.yml location and in terminal kubectl get nodes (MAKE SURE YOUR DOCKER DESKTOP IS STARTED).
+  
